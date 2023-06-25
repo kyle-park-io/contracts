@@ -5,8 +5,11 @@ sol:
 
 ganache:
 	yarn
-	npx hardhat run scripts/deploy.other.ts --network ganache
-	npx hardhat run scripts/deploy.a.ts --network ganache
+	npx hardhat run scripts/call/deploy.other.ts --network ganache
+	npx hardhat run scripts/call/deploy.a.ts --network ganache
+	npx hardhat run scripts/interface/deploy.ie.ts --network ganache
+	npx hardhat run scripts/interface/deploy.ic.ts --network ganache
+	npx hardhat run scripts/interface/deploy.it.ts --network ganache
 
 sepolia:
 	yarn
