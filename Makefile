@@ -1,7 +1,9 @@
 sol:
-	solc --optimize --abi ./contracts/Lock.sol -o build
-	solc --optimize --bin ./contracts/Lock.sol -o build
-	./abigen --abi=./build/Lock.abi --bin=./build/Lock.bin --pkg=api --type Lock --out=./api/Lock.go
+  mkdir -p api
+	npx solc --optimize --abi ./src/contracts/string/String.sol -o build
+  npx solc --optimize --bin ./src/contracts/string/String.sol -o build
+	./bin/abigen_arm --abi=./build/src_contracts_string_String_sol_String.abi --bin=./build/src_contracts_string_String_sol_String.bin --pkg=api --type String --out=./api/String.go
+  ./bin/abigen_amd --abi=./build/src_contracts_string_String_sol_String.abi --bin=./build/src_contracts_string_String_sol_String.bin --pkg=api --type String --out=./api/String.go
 
 ganache:
 	yarn
