@@ -8,19 +8,7 @@ const GANACHE_DEPLOYER_PRIVATE_KEY = process.env.GANACHE_DEPLOYER_PRIVATE_KEY;
 const SEPOLIA_PRIVATE_KEY = process.env.SIGNER_PRIVATE_KEY;
 
 const config: HardhatUserConfig = {
-  paths: {
-    sources: './src/contracts',
-  },
-  solidity: {
-    version: '0.8.20',
-    settings: {
-      optimizer: {
-        enabled: true,
-        runs: 2000,
-      },
-      viaIR: true,
-    },
-  },
+  defaultNetwork: 'hardhat',
   networks: {
     hardhat: {
       chainId: 1337,
@@ -33,6 +21,29 @@ const config: HardhatUserConfig = {
       url: `https://sepolia.infura.io/v3/${INFURA_API_KEY}`,
       accounts: [SEPOLIA_PRIVATE_KEY],
     },
+  },
+  solidity: {
+    compilers: [
+      { version: '0.8.20' },
+      { version: '0.4.24' },
+      { version: '0.6.12' },
+    ],
+    settings: {
+      optimizer: {
+        enabled: true,
+        runs: 2000,
+      },
+      viaIR: true,
+    },
+  },
+  paths: {
+    sources: './src/ethereum/contracts',
+    tests: './src/ethereum/test',
+    cache: './src/ethereum/cache',
+    artifacts: './src/ethereum/artifacts',
+  },
+  mocha: {
+    timeout: 40000,
   },
 };
 
